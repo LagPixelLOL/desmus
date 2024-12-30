@@ -1,2 +1,2 @@
-# desmus
+# Desmus
 Import samples into Desmos.
