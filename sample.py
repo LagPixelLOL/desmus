@@ -7,8 +7,9 @@ import scipy as sp
 
 def spectrum(segment, sample_rate, n_freq):
     n = len(segment)
-    fft_freq = np.fft.rfftfreq(n, d=1 / sample_rate)
+    fft_freq = np.fft.rfftfreq(n, d=1 / sample_rate).astype(np.float32)
     dst_result = sp.fft.dst(segment, type=2, norm="ortho")[:len(fft_freq)]
+    # dst_result = np.abs(sp.fft.dst(segment, type=2, norm="ortho")[:len(fft_freq)])
     dst_result /= np.max(dst_result)
     result = np.column_stack((fft_freq, dst_result))
     result = result[result[:, 1] > 0]
